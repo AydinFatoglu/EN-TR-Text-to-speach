@@ -1,40 +1,44 @@
-# Multilingual Text-to-Speech
+# Multilingual Clipboard Text-to-Speech
 
-The Multilingual Text-to-Speech application is a program that converts text input into speech output in various languages. It uses the gTTS (Google Text-to-Speech) library to generate speech from the entered text and the ffplay command-line audio player to play the generated speech.
+Multilingual Clipboard Text-to-Speech, panoya kopyaladığınız metni otomatik olarak okuyan, hafif ve çevrimdışı çalışan bir Python programıdır. Hızlı ve internet gerektirmeyen ses üretimi için yerel Windows Konuşma API'sini (SAPI) kullanır ve `tkinter` ile oluşturulmuş modern bir grafik arayüzüne (GUI) sahiptir.
 
-## Features
+## Özellikler
 
-- Text input: Enter the desired text to be converted into speech.
-- Language selection: Choose the language for the speech output from the available options (English and Turkish by default).
-- Speech generation: The program utilizes gTTS to generate the speech audio file based on the entered text and selected language.
-- Playback: The generated speech is played using the ffplay command-line audio player.
-- Stop functionality: The program provides a stop button to halt the speech playback if needed.
-- Right-click context menu: The input text box supports cut, copy, paste, and select all operations through a right-click context menu.
-- Text wrapping and scrollbars: The input text box wraps the entered text at word boundaries and includes scrollbars for easy navigation.
+*   **Pano İzleme (Otomatik Okuma):** Panoya kopyalanan yeni metni otomatik olarak algılar ve yapıştırmaya gerek kalmadan anında yüksek sesle okur.
+*   **Tek Tıkla Dil Değiştirme:** Arayüzdeki interaktif bayrak simgesine tıklayarak Türkçe (Microsoft Tolga) ve İngilizce (Microsoft David) sesleri arasında sorunsuz bir şekilde geçiş yapın.
+*   **Ayarlanabilir Okuma Hızı:** Gerçek zamanlı bir kaydırıcı kullanarak konuşma hızını %50'den %200'e kadar özelleştirin.
+*   **%100 Çevrimdışı Çalışma:** Yerel Windows SAPI'yi (`win32com.client`) kullanarak, uygulama internet bağlantısı veya harici API limitleri gerektirmez.
+*   **Asenkron Oynatma ve Durdurma:** Ses arka planda işlenir, uygulamayı duyarlı tutar ve "Durdur" düğmesiyle oynatmayı anında durdurmanıza olanak tanır.
+*   **Her Zaman Üstte:** Uygulama penceresi, çalışırken veya gezinirken kolay erişim için diğer pencerelerin üzerinde kalır.
 
-## Prerequisites
+## Gereksinimler
 
-- Python 3.x: Make sure you have Python 3.x installed on your system.
-- gTTS: Install the gTTS library using pip: `pip install gtts`.
-- ffplay: The ffplay command-line audio player should be accessible from the command line. Install FFmpeg or the appropriate package for your operating system to get ffplay.
+*   **İşletim Sistemi:** Windows (Windows SAPI için gereklidir).
+*   **Python 3.x:** Sisteminizde Python 3.x'in yüklü olduğundan emin olun.
+*   **Gerekli Kütüphaneler:** Gerekli paketleri pip üzerinden yükleyin:
+    ```bash
+    pip install pyperclip pywin32
+    ```
 
-## Usage
+## Kullanım
 
-1. Clone the repository or download the source code to your local machine.
-2. Install the required dependencies (gTTS and FFmpeg if not already installed).
-3. Run the program: `python text_to_speech.py`.
-4. Enter the desired text in the input box.
-5. Select the language from the dropdown menu.
-6. Click the "Submit" button to generate and play the speech.
-7. To stop the speech playback, click the "Stop" button.
-8. Right-click inside the input box for additional options like cut, copy, paste, and select all.
+1.  Depoyu klonlayın veya kaynak kodu yerel makinenize indirin.
+2.  Yukarıda belirtilen komutu kullanarak gerekli bağımlılıkları yükleyin.
+3.  *(İsteğe bağlı)* US ve TR bayrakları için özel Base64 PNG kodlarınızı kodun içindeki belirlenmiş alanlara ekleyin.
+4.  Programı çalıştırın:
+    ```bash
+    python text_to_speech.py
+    ```
+5.  **Metni Okumak İçin:** Bilgisayarınızın herhangi bir yerinden herhangi bir metni kopyalayın (`Ctrl+C`). "Panoyu otomatik oku" onay kutusu işaretliyse, otomatik olarak okumaya başlayacaktır. Alternatif olarak, **"▶ OKU" (PLAY)** düğmesine tıklayın.
+6.  **Dili Değiştirmek İçin:** İngilizce ve Türkçe arasında geçiş yapmak için pencerenin ortasındaki Bayrak Simgesine tıklayın.
+7.  **Hızı Ayarlamak İçin:** Tercih ettiğiniz okuma hızını ayarlamak için kaydırıcıyı sürükleyin.
+8.  **Durdurmak İçin:** Mevcut ses çalmayı hemen durdurmak için **"■ DURDUR" (STOP)** düğmesine tıklayın.
 
-## Limitations
+## Sınırlamalar
 
-- The program requires a working internet connection to use the gTTS library for speech generation.
-- Make sure the ffplay command-line audio player is installed and accessible for speech playback.
-- Some languages may not be supported or may have limitations with the gTTS library.
+*   **Yalnızca Windows:** Bu uygulama, `win32com.client` ve yerel Windows SAPI'ye olan bağımlılığı nedeniyle Windows ortamları için özel olarak tasarlanmıştır.
+*   **Sistem Sesleri:** Kullanılabilir sesler, Windows işletim sisteminizde yüklü olan TTS dil paketlerine bağlıdır (özellikle bu konfigürasyonda İngilizce için *Microsoft David* ve Türkçe için *Microsoft Tolga* beklenmektedir).
 
-## Contributing
+## Katkıda Bulunma
 
-Contributions to the Multilingual Text-to-Speech program are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+Multilingual Clipboard Text-to-Speech programına katkılarınız kabul edilir! Herhangi bir sorun bulursanız, çapraz platform desteği eklemek isterseniz veya iyileştirme önerileriniz varsa, lütfen bir sorun (issue) açın veya bir çekme isteği (pull request) gönderin.
